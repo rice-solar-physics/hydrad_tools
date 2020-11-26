@@ -1,0 +1,602 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Tools for running and parsing HYDRAD simulations">
+      
+      
+      
+        <link rel="canonical" href="https://rice-solar-physics.github.io/pydrad/api/parse/">
+      
+      
+        <meta name="author" content="Will Barnes">
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.6">
+    
+    
+      
+        <title>pydrad.parse - pydrad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6910b76c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.196e0c26.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#757575">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="grey" data-md-color-accent="yellow">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://rice-solar-physics.github.io/pydrad" title="pydrad" class="md-header-nav__button md-logo" aria-label="pydrad">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M507.73 109.1c-2.24-9.03-13.54-12.09-20.12-5.51l-74.36 74.36-67.88-11.31-11.31-67.88 74.36-74.36c6.62-6.62 3.43-17.9-5.66-20.16-47.38-11.74-99.55.91-136.58 37.93-39.64 39.64-50.55 97.1-34.05 147.2L18.74 402.76c-24.99 24.99-24.99 65.51 0 90.5 24.99 24.99 65.51 24.99 90.5 0l213.21-213.21c50.12 16.71 107.47 5.68 147.37-34.22 37.07-37.07 49.7-89.32 37.91-136.73zM64 472c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            pydrad
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              pydrad.parse
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/rice-solar-physics/pydrad/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rice-solar-physics/pydrad
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://rice-solar-physics.github.io/pydrad" title="pydrad" class="md-nav__button md-logo" aria-label="pydrad">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M507.73 109.1c-2.24-9.03-13.54-12.09-20.12-5.51l-74.36 74.36-67.88-11.31-11.31-67.88 74.36-74.36c6.62-6.62 3.43-17.9-5.66-20.16-47.38-11.74-99.55.91-136.58 37.93-39.64 39.64-50.55 97.1-34.05 147.2L18.74 402.76c-24.99 24.99-24.99 65.51 0 90.5 24.99 24.99 65.51 24.99 90.5 0l213.21-213.21c50.12 16.71 107.47 5.68 147.37-34.22 37.07-37.07 49.7-89.32 37.91-136.73zM64 472c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"/></svg>
+
+    </a>
+    pydrad
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/rice-solar-physics/pydrad/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rice-solar-physics/pydrad
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../configure/" class="md-nav__link">
+      Configuring a Simulation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../parse/" class="md-nav__link">
+      Parsing the Results
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../plot/" class="md-nav__link">
+      Plotting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    <label class="md-nav__link" for="nav-5">
+      API
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="API" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        API
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../configure/" class="md-nav__link">
+      pydrad.configure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      pydrad.parse
+    </a>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../visualize/" class="md-nav__link">
+      pydrad.visualize
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rice-solar-physics/pydrad/edit/master/docs/api/parse.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="pydrad.parse">pydrad.parse</h1>
+
+<p>Objects for easily parsing HYDRAD results</p>
+<h1 id="pydrad.parse.Strand">Strand</h1>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Strand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hydrad_root</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Container for parsing HYDRAD results</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><strong>hydrad_root (<code>str</code>)</strong>: Path to HYDRAD simulation directory</li>
+</ul>
+<h2 id="pydrad.parse.Strand.to_hdf5">to_hdf5</h2>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Strand</span><span class="o">.</span><span class="n">to_hdf5</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="o">*</span><span class="n">variables</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Save variables to an HDF5 file</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><strong>filename (<code>str</code> or path-like)</strong>: path to HDF file</li>
+<li><strong>variables (<code>str</code>)</strong>: Names of variables to save to file</li>
+</ul>
+<h2 id="pydrad.parse.Strand.time">time</h2>
+
+<p>Simulation time</p>
+<h2 id="pydrad.parse.Strand.loop_length">loop_length</h2>
+
+<p>Footpoint-to-footpoint loop length</p>
+<h2 id="pydrad.parse.Strand.initial_conditions">initial_conditions</h2>
+
+<p><code>Profile</code> for the solutions to the hydrostatic
+equations used as initial conditions.</p>
+<h2 id="pydrad.parse.Strand.peek">peek</h2>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Strand</span><span class="o">.</span><span class="n">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Quick look at all profiles for the run on a single plot. Takes
+the same keyword arguments as <code>pydrad.visualize.plot_strand</code></p>
+<h2 id="pydrad.parse.Strand.peek_time_distance">peek_time_distance</h2>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Strand</span><span class="o">.</span><span class="n">peek_time_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quantities</span><span class="p">,</span> <span class="n">delta_s</span><span class="p">:</span> <span class="n">Unit</span><span class="p">(</span><span class="s2">&quot;cm&quot;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Quick look at time-distance plots of various quantities. Takes
+the same keyword arguments as <code>pydrad.visualize.plot_time_distance</code></p>
+<h2 id="pydrad.parse.Strand.animate">animate</h2>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Strand</span><span class="o">.</span><span class="n">animate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Simple animation of time-dependent loop profiles. Takes the same
+keyword arguments as <code>pydrad.visualize.animate_strand</code></p>
+<h2 id="pydrad.parse.Strand.get_uniform_grid">get_uniform_grid</h2>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Strand</span><span class="o">.</span><span class="n">get_uniform_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">delta_s</span><span class="p">:</span> <span class="n">Unit</span><span class="p">(</span><span class="s2">&quot;cm&quot;</span><span class="p">))</span>
+</code></pre></div>
+
+<p>Create a spatial grid with uniform spacing <code>delta_s</code>.</p>
+<p><strong>Parameters:</strong></p>
+<p>delta_s (<code>astropy.units.Quantity</code>): Spacing between each grid point</p>
+<h2 id="pydrad.parse.Strand.to_constant_grid">to_constant_grid</h2>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Strand</span><span class="o">.</span><span class="n">to_constant_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">grid</span><span class="p">:</span> <span class="n">Unit</span><span class="p">(</span><span class="s2">&quot;cm&quot;</span><span class="p">))</span>
+</code></pre></div>
+
+<p>Interpolate a given quantity onto a spatial grid that is the same at
+each time step.</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><strong>name (<code>str</code>)</strong>: Name of quantity</li>
+<li><strong>grid (<code>astropy.units.Quantity</code>)</strong>: Spatial grid to interpolate onto</li>
+</ul>
+<h1 id="pydrad.parse.Profile">Profile</h1>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Profile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hydrad_root</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Unit</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Container for HYDRAD results at a given timestep. Typically accessed
+through <code>Strand</code></p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><strong>hydrad_root (<code>str</code>)</strong>: Path to HYDRAD directory</li>
+<li><strong>time (<code>astropy.units.Quantity</code>)</strong>:</li>
+</ul>
+<h2 id="pydrad.parse.Profile.grid_centers">grid_centers</h2>
+
+<p>Spatial location of the grid centers</p>
+<h2 id="pydrad.parse.Profile.grid_widths">grid_widths</h2>
+
+<p>Spatial width of each grid cell</p>
+<h2 id="pydrad.parse.Profile.grid_edges">grid_edges</h2>
+
+<p>Spatial location of left edge of each grid cell</p>
+<h2 id="pydrad.parse.Profile.spatial_average">spatial_average</h2>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Profile</span><span class="o">.</span><span class="n">spatial_average</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quantity</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Compute a spatial average of a specific quantity</p>
+<h2 id="pydrad.parse.Profile.column_emission_measure">column_emission_measure</h2>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Profile</span><span class="o">.</span><span class="n">column_emission_measure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bins</span><span class="p">:</span> <span class="n">Unit</span><span class="p">(</span><span class="s2">&quot;K&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Computes the column emission measure, where it is assumed that the loop is
+confined to a single pixel and oriented along the LOS</p>
+<p><strong>Parameters</strong></p>
+<ul>
+<li><strong>bins (<code>astropy.units.Quantity</code>)</strong>: temperature bin edges, including rightmost
+edge. If None (default), the bins will be equally-spaced in <span><span class="MathJax_Preview">\log{T}</span><script type="math/tex">\log{T}</script></span>, with
+a left edge at <span><span class="MathJax_Preview">\log{T}=3</span><script type="math/tex">\log{T}=3</script></span>, a right edge at <span><span class="MathJax_Preview">\log{T}=8</span><script type="math/tex">\log{T}=8</script></span>, and a bin width of
+<span><span class="MathJax_Preview">0.05</span><script type="math/tex">0.05</script></span>.</li>
+</ul>
+<p><strong>Returns</strong></p>
+<p><code>em (astropy.units.Quantity)</code>: the column emission measure in each bin</p>
+<p><code>bins (astropy.units.Quantity)</code>: temperature bin edges. Note that <code>len(bins)=len(em)+1</code>.</p>
+<h2 id="pydrad.parse.Profile.peek">peek</h2>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Profile</span><span class="o">.</span><span class="n">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Quick look at profiles at a given timestep.</p>
+<h2 id="pydrad.parse.Profile.peek_emission_measure">peek_emission_measure</h2>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Profile</span><span class="o">.</span><span class="n">peek_emission_measure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Quick look at the column emission measure</p>
+<h2 id="pydrad.parse.Profile.coordinate">coordinate</h2>
+
+<p>Coordinate as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.electron_temperature">electron_temperature</h2>
+
+<p>Electron temperature as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.ion_temperature">ion_temperature</h2>
+
+<p>Ion temperature as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.electron_density">electron_density</h2>
+
+<p>Electron density as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.ion_density">ion_density</h2>
+
+<p>Ion density as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.electron_pressure">electron_pressure</h2>
+
+<p>Electron pressure as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.ion_pressure">ion_pressure</h2>
+
+<p>Ion pressure as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.velocity">velocity</h2>
+
+<p>Velocity as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.level_population_hydrogen_1">level_population_hydrogen_1</h2>
+
+<p>Level population hydrogen 1 as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.level_population_hydrogen_2">level_population_hydrogen_2</h2>
+
+<p>Level population hydrogen 2 as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.level_population_hydrogen_3">level_population_hydrogen_3</h2>
+
+<p>Level population hydrogen 3 as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.level_population_hydrogen_4">level_population_hydrogen_4</h2>
+
+<p>Level population hydrogen 4 as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.level_population_hydrogen_5">level_population_hydrogen_5</h2>
+
+<p>Level population hydrogen 5 as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+<h2 id="pydrad.parse.Profile.level_population_hydrogen_6">level_population_hydrogen_6</h2>
+
+<p>Level population hydrogen 6 as a function of <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../configure/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                pydrad.configure
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../visualize/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                pydrad.visualize
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="http://solar.rice.edu/" target="_blank" rel="noopener" title="solar.rice.edu" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/rice-solar-physics" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.fd16492e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.7836ba4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

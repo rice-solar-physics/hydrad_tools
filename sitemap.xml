@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
+     <loc>https://rice-solar-physics.github.io/pydrad/</loc>
+     <lastmod>2020-11-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://rice-solar-physics.github.io/pydrad/configure/</loc>
+     <lastmod>2020-11-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://rice-solar-physics.github.io/pydrad/parse/</loc>
+     <lastmod>2020-11-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://rice-solar-physics.github.io/pydrad/plot/</loc>
+     <lastmod>2020-11-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://rice-solar-physics.github.io/pydrad/api/configure/</loc>
+     <lastmod>2020-11-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://rice-solar-physics.github.io/pydrad/api/parse/</loc>
+     <lastmod>2020-11-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://rice-solar-physics.github.io/pydrad/api/visualize/</loc>
+     <lastmod>2020-11-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+</urlset>

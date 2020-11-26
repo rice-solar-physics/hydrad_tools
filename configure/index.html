@@ -1,0 +1,1523 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Tools for running and parsing HYDRAD simulations">
+      
+      
+      
+        <link rel="canonical" href="https://rice-solar-physics.github.io/pydrad/configure/">
+      
+      
+        <meta name="author" content="Will Barnes">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.6">
+    
+    
+      
+        <title>Configuring a Simulation - pydrad</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6910b76c.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#757575">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="grey" data-md-color-accent="yellow">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configure-a-simulation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://rice-solar-physics.github.io/pydrad" title="pydrad" class="md-header-nav__button md-logo" aria-label="pydrad">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M507.73 109.1c-2.24-9.03-13.54-12.09-20.12-5.51l-74.36 74.36-67.88-11.31-11.31-67.88 74.36-74.36c6.62-6.62 3.43-17.9-5.66-20.16-47.38-11.74-99.55.91-136.58 37.93-39.64 39.64-50.55 97.1-34.05 147.2L18.74 402.76c-24.99 24.99-24.99 65.51 0 90.5 24.99 24.99 65.51 24.99 90.5 0l213.21-213.21c50.12 16.71 107.47 5.68 147.37-34.22 37.07-37.07 49.7-89.32 37.91-136.73zM64 472c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            pydrad
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Configuring a Simulation
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/rice-solar-physics/pydrad/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rice-solar-physics/pydrad
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://rice-solar-physics.github.io/pydrad" title="pydrad" class="md-nav__button md-logo" aria-label="pydrad">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M507.73 109.1c-2.24-9.03-13.54-12.09-20.12-5.51l-74.36 74.36-67.88-11.31-11.31-67.88 74.36-74.36c6.62-6.62 3.43-17.9-5.66-20.16-47.38-11.74-99.55.91-136.58 37.93-39.64 39.64-50.55 97.1-34.05 147.2L18.74 402.76c-24.99 24.99-24.99 65.51 0 90.5 24.99 24.99 65.51 24.99 90.5 0l213.21-213.21c50.12 16.71 107.47 5.68 147.37-34.22 37.07-37.07 49.7-89.32 37.91-136.73zM64 472c-13.25 0-24-10.75-24-24 0-13.26 10.75-24 24-24s24 10.74 24 24c0 13.25-10.75 24-24 24z"/></svg>
+
+    </a>
+    pydrad
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/rice-solar-physics/pydrad/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    rice-solar-physics/pydrad
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Getting Started
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Configuring a Simulation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Configuring a Simulation
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-a-default-configuration" class="md-nav__link">
+    Setting a Default Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overriding-default-templates" class="md-nav__link">
+    Overriding Default Templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-parameters" class="md-nav__link">
+    Configuration Parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    General
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-conditions" class="md-nav__link">
+    Initial Conditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heating" class="md-nav__link">
+    Heating
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radiation" class="md-nav__link">
+    Radiation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solver" class="md-nav__link">
+    Solver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grid" class="md-nav__link">
+    Grid
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../parse/" class="md-nav__link">
+      Parsing the Results
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../plot/" class="md-nav__link">
+      Plotting
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+    <label class="md-nav__link" for="nav-5">
+      API
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="API" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        API
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../api/configure/" class="md-nav__link">
+      pydrad.configure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../api/parse/" class="md-nav__link">
+      pydrad.parse
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../api/visualize/" class="md-nav__link">
+      pydrad.visualize
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-a-default-configuration" class="md-nav__link">
+    Setting a Default Configuration
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overriding-default-templates" class="md-nav__link">
+    Overriding Default Templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-parameters" class="md-nav__link">
+    Configuration Parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    General
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#initial-conditions" class="md-nav__link">
+    Initial Conditions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heating" class="md-nav__link">
+    Heating
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radiation" class="md-nav__link">
+    Radiation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#solver" class="md-nav__link">
+    Solver
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grid" class="md-nav__link">
+    Grid
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/rice-solar-physics/pydrad/edit/master/docs/configure.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="configure-a-simulation">Configure a Simulation</h1>
+<p>HYDRAD requires setting many different configuration files, making it difficult and tedious to configure a simulation by hand. Fortunately, the <code>pydrad</code> package makes it easy to quickly configure a new simulation using Python.</p>
+<p>Rather than editing each configuration file individually, an entire simulation can be configured using a single <a href="https://docs.python.org/3/library/stdtypes.html#dict">Python dictionary</a>. Below is an example of a dictionary for configuring a simulation of a 80 Mm loop lasting 5000 s with a single heating pulse using an adaptive grid. Many of the configuration options have been excluded for brevity. A complete list of configuration parameters can be found in the <a href="#configuration-parameters">section below</a>.</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">config_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;general&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;total_time&#39;</span><span class="p">:</span> <span class="mf">5e3</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span>
+            <span class="s1">&#39;loop_length&#39;</span><span class="p">:</span> <span class="mi">80</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">Mm</span><span class="p">,</span>
+            <span class="s1">&#39;footpoint_height&#39;</span><span class="p">:</span> <span class="mf">5e8</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="p">,</span>
+            <span class="c1"># ... other config parameters ...</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;initial_conditions&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;footpoint_temperature&#39;</span><span class="p">:</span> <span class="mf">2e4</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">K</span><span class="p">,</span>
+            <span class="s1">&#39;footpoint_density&#39;</span><span class="p">:</span> <span class="mf">1e11</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">),</span>
+            <span class="s1">&#39;isothermal&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="c1"># ... other config parameters ...</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;radiation&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;use_power_law_radiative_losses&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="c1"># ... other config parameters ...</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;heating&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;heat_electrons&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="s1">&#39;events&#39;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s1">&#39;time_start&#39;</span><span class="p">:</span> <span class="mf">0.</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="s1">&#39;rise_duration&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span>
+                <span class="s1">&#39;decay_duration&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="s1">&#39;total_duration&#39;</span><span class="p">:</span> <span class="mi">200</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">,</span>
+                <span class="s1">&#39;location&#39;</span><span class="p">:</span> <span class="mf">4e9</span><span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="p">,</span> <span class="s1">&#39;scale_height&#39;</span><span class="p">:</span> <span class="mf">1e300</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="p">,</span>
+                <span class="s1">&#39;rate&#39;</span><span class="p">:</span> <span class="mf">0.1</span> <span class="o">*</span><span class="n">u</span><span class="o">.</span><span class="n">erg</span><span class="o">/</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="o">/</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">cm</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="p">},</span>
+            <span class="p">],</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;solver&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;safety_radiation&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+            <span class="s1">&#39;safety_conduction&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+            <span class="s1">&#39;safety_advection&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+            <span class="s1">&#39;safety_atomic&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+            <span class="c1"># ... other grid parameters ...</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;grid&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;adapt&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="c1"># ... other grid parameters ...</span>
+        <span class="p">}</span>
+    <span class="p">}</span> 
+</code></pre></div>
+
+<p>The next step is to pass it to the <code>pydrad</code> class which can parse it and print the needed configuration files,</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pydrad</span> <span class="kn">import</span> <span class="n">configure</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">configure</span><span class="o">.</span><span class="n">Configure</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>And we can preview the different configuration files that setup the HYDRAD simulation,</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">initial_conditions_header</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="c1">// ****</span>
+<span class="c1">// *</span>
+<span class="c1">// * #defines for configuring the hydrostatic model</span>
+<span class="c1">// *</span>
+<span class="c1">// * (c) Dr. Stephen J. Bradshaw</span>
+<span class="c1">// *</span>
+<span class="c1">// * Source code generated by pydrad on 2018-03-26_00.38.59</span>
+<span class="c1">// *</span>
+<span class="c1">// ****</span>
+
+<span class="c1">// **** Output ****</span>
+<span class="c1">// **** End of Output ****</span>
+
+<span class="c1">// **** Physics ****</span>
+<span class="cp">#include</span> <span class="cpf">&quot;../../Radiation_Model/source/config.h&quot;</span><span class="cp"></span>
+
+
+
+<span class="c1">// **** Solver ****</span>
+<span class="cp">#define EPSILON 0.01</span>
+
+<span class="c1">// **** Grid ****</span>
+<span class="cp">#define ADAPT</span>
+<span class="cp">#define MIN_CELLS 150</span>
+<span class="cp">#define MAX_CELLS 30000</span>
+<span class="cp">#define MAX_REFINEMENT_LEVEL 12</span>
+<span class="cp">#define MIN_DS 1.0</span>
+<span class="cp">#define MAX_VARIATION 1.1</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">initial_conditions_cfg</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">Initial_Conditions</span><span class="o">/</span><span class="n">profiles</span><span class="o">/</span><span class="n">initial</span><span class="p">.</span><span class="n">amr</span>
+
+<span class="mi">8000000000</span><span class="p">.</span><span class="mi">0</span>
+<span class="mi">0</span><span class="p">.</span><span class="mi">0</span>
+<span class="mi">500000000</span><span class="p">.</span><span class="mi">0</span>
+
+<span class="mi">20000</span><span class="p">.</span><span class="mi">0</span>
+
+<span class="mi">100000000000</span><span class="p">.</span><span class="mi">0</span>
+
+<span class="mi">4000000000</span><span class="p">.</span><span class="mi">0</span>
+<span class="mi">1</span><span class="n">e</span><span class="o">+</span><span class="mi">300</span>
+<span class="o">-</span><span class="mi">8</span><span class="p">.</span><span class="mi">0</span>
+<span class="mi">2</span><span class="p">.</span><span class="mi">0</span>
+<span class="mi">0</span><span class="p">.</span><span class="mi">001</span>
+<span class="mi">10000</span><span class="p">.</span><span class="mi">0</span>
+
+<span class="n">Configuration</span> <span class="n">file</span> <span class="k">generated</span> <span class="k">by</span> <span class="n">pydrad</span> <span class="k">on</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">26</span><span class="n">_00</span><span class="p">.</span><span class="mi">42</span><span class="p">.</span><span class="mi">20</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">hydrad_header</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="c1">// ****</span>
+<span class="c1">// *</span>
+<span class="c1">// * #defines for configuring the hydrodynamic model</span>
+<span class="c1">// *</span>
+<span class="c1">// * (c) Dr. Stephen J. Bradshaw</span>
+<span class="c1">// *</span>
+<span class="c1">// * Source code generated by pydrad on 2018-03-26_00.59.38</span>
+<span class="c1">// *</span>
+<span class="c1">// ****</span>
+
+<span class="c1">// **** Output ****</span>
+<span class="cp">#define WRITE_FILE_PHYSICAL</span>
+
+
+
+
+<span class="cp">#define OUTPUT_EVERY_N_TIME_STEPS 1000</span>
+<span class="c1">// **** End of Output ****</span>
+
+<span class="c1">// **** Physics ****</span>
+<span class="cp">#include</span> <span class="cpf">&quot;../../Heating_Model/source/config.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;../../Radiation_Model/source/config.h&quot;</span><span class="cp"></span>
+<span class="cp">#define HEAT_FLUX_LIMITING_COEFFICIENT 1.0</span>
+<span class="cp">#define TIME_STEP_LIMIT 1e-10</span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;collisions.h&quot;</span><span class="cp"></span>
+
+
+<span class="c1">// **** End of Physics ****</span>
+
+<span class="c1">// **** Solver ****</span>
+<span class="cp">#define SAFETY_RADIATION 1.0</span>
+<span class="cp">#define SAFETY_CONDUCTION 1.0</span>
+<span class="cp">#define SAFETY_ADVECTION 1.0</span>
+<span class="cp">#define SAFETY_VISCOSITY 1.0</span>
+<span class="cp">#define TIME_STEP_INCREASE_LIMIT 1.05</span>
+
+<span class="cp">#define MINIMUM_RADIATION_TEMPERATURE 20000.0</span>
+<span class="cp">#define ZERO_OVER_TEMPERATURE_INTERVAL 500.0</span>
+<span class="cp">#define MINIMUM_TEMPERATURE 10000.0</span>
+<span class="c1">// **** End of Solver ****</span>
+
+<span class="c1">// **** Grid ****</span>
+<span class="cp">#define MAX_REFINEMENT_LEVEL 12</span>
+<span class="cp">#define ADAPT</span>
+
+<span class="cp">#define REFINE_ON_ELECTRON_ENERGY</span>
+
+<span class="cp">#define MIN_FRAC_DIFF 0.1</span>
+<span class="cp">#define MAX_FRAC_DIFF 0.2</span>
+<span class="cp">#define LINEAR_RESTRICTION</span>
+
+<span class="c1">// **** End of Grid ****</span>
+</code></pre></div>
+
+<p>To print all configuration files, run the initial conditions, and copy all of this to a new location,</p>
+<div class="codehilite"><pre><span></span><code><span class="n">c</span><span class="o">.</span><span class="n">setup_simulation</span><span class="p">(</span><span class="s1">&#39;/path/to/simulation/dir/new_hydrad_sim&#39;</span><span class="p">,</span>
+                   <span class="n">base_path</span><span class="o">=</span><span class="s1">&#39;/path/to/clean/HYDRAD&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This will create all of the needed input files from the options in <code>config</code>, compile the initial conditions code, run <code>Initial_Conditions.exe</code>, compile the main HYDRAD, and copy it all to the directory <code>/path/to/simulation/dir/new_hydrad_sim</code>.</p>
+<h2 id="setting-a-default-configuration">Setting a Default Configuration</h2>
+<p>HYDRAD requires a lot of configuration options and it can be annoying to have put them all in a configuration file. To avoid this, you can load a default configuration from an <a href="https://asdf.readthedocs.io">ASDF file</a>, a human-readable, structured plain text file in the YAML format. These ASDF files are structured just like the config directory and can be easily read and written. </p>
+<p>To load a configuration from a file,</p>
+<div class="codehilite"><pre><span></span><code><span class="n">config</span> <span class="o">=</span> <span class="n">configure</span><span class="o">.</span><span class="n">Configure</span><span class="o">.</span><span class="n">load_config</span><span class="p">(</span><span class="s1">&#39;/path/to/config/defaults.asdf&#39;</span><span class="p">)</span>
+<span class="c1"># Update configuration options in config</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">configure</span><span class="o">.</span><span class="n">Configure</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+
+<p>And to save the configuration to disk,</p>
+<div class="codehilite"><pre><span></span><code><span class="n">c</span><span class="o">.</span><span class="n">save_config</span><span class="p">(</span><span class="s1">&#39;/path/to/config/my_config.asdf&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>An example default configuration file can be found in the root of the <a href="https://github.com/wtbarnes/pydrad">pydrad repository</a>.</p>
+<h2 id="overriding-default-templates">Overriding Default Templates</h2>
+<p>If you make local modifications to the HYDRAD code, you may need configuration options not in the included templates. To use custom configuration options, you can inject your own modified templates of the configuration files which take advantage of any custom options. </p>
+<p>To see the available templates,</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">c</span><span class="o">.</span><span class="n">templates</span>
+<span class="p">[</span><span class="s1">&#39;coefficients.cfg&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;collisions.h&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;heating.cfg&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;heating.config.h&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;hydrad.cfg&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;hydrad.config.h&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;initial_conditions.cfg&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;initial_conditions.config.h&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;radiation.config.h&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;radiation.elements.cfg&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Say we want to add an option, <code>MY_NEW_PARAM</code> to the <code>collisions.h</code> file. To get the current unrendered template,</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">get_raw_template</span><span class="p">(</span><span class="s1">&#39;collisions.h&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="x">// ****</span>
+<span class="x">// *</span>
+<span class="x">// * #defines for configuring the shortest collisional coupling timescale</span>
+<span class="x">// *</span>
+<span class="x">// * (c) Dr. Stephen J. Bradshaw</span>
+<span class="x">// *</span>
+<span class="x">// * Source code generated by pydrad on </span><span class="cp">{{</span> <span class="nv">date</span> <span class="cp">}}</span><span class="x"></span>
+<span class="x">// *</span>
+<span class="x">// ****</span>
+
+<span class="x">// **** Physics ****</span>
+<span class="x">#define MINIMUM_COLLISIONAL_COUPLING_TIME_SCALE </span><span class="cp">{{</span> <span class="nv">general.minimum_collisional_coupling_timescale</span> <span class="o">|</span> <span class="nf">units_filter</span><span class="o">(</span><span class="s1">&#39;s&#39;</span><span class="o">)</span> <span class="cp">}}</span><span class="x"></span>
+<span class="cp">{%</span> <span class="k">if</span> <span class="nv">general.force_single_fluid</span> -<span class="cp">%}</span><span class="x">#define FORCE_SINGLE_FLUID</span><span class="cp">{%</span>- <span class="k">endif</span> <span class="cp">%}</span><span class="x"></span>
+<span class="x">// **** End of Physics ****</span>
+</code></pre></div>
+
+<p>We can then create a new template with our new value,</p>
+<div class="codehilite"><pre><span></span><code><span class="n">new_collisions</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;// ****</span>
+<span class="s2">// *</span>
+<span class="s2">// * #defines for configuring the shortest collisional coupling timescale</span>
+<span class="s2">// *</span>
+<span class="s2">// * (c) Dr. Stephen J. Bradshaw</span>
+<span class="s2">// *</span>
+<span class="s2">// * Source code generated by pydrad on {{ date }}</span>
+<span class="s2">// *</span>
+<span class="s2">// ****</span>
+
+<span class="s2">// **** Physics ****</span>
+<span class="s2">#define MINIMUM_COLLISIONAL_COUPLING_TIME_SCALE {{ general.minimum_collisional_coupling_timescale | units_filter(&#39;s&#39;) }}</span>
+<span class="s2">{</span><span class="si">% i</span><span class="s2">f general.force_single_fluid -%}#define FORCE_SINGLE_FLUID{</span><span class="si">%- e</span><span class="s2">ndif %}</span>
+<span class="s2">// **** End of Physics ****</span>
+<span class="s2">#define MY_NEW_PARAM {{ general.my_new_param }}&quot;&quot;&quot;</span>
+</code></pre></div>
+
+<p>add our new parameter to the configuration directory,</p>
+<div class="codehilite"><pre><span></span><code><span class="n">config</span><span class="p">[</span><span class="s1">&#39;general&#39;</span><span class="p">][</span><span class="s1">&#39;my_new_param&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+</code></pre></div>
+
+<p>and then pass the template to the <code>Configure</code> object,</p>
+<div class="codehilite"><pre><span></span><code><span class="n">c_new</span> <span class="o">=</span> <span class="n">Configure</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">templates</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;collisions.h&#39;</span><span class="p">:</span> <span class="n">new_collisions</span><span class="p">})</span>
+</code></pre></div>
+
+<p>Now take a look at your custom rendered template,</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">c_new</span><span class="o">.</span><span class="n">collisions_header</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="o">****</span>
+<span class="o">//</span> <span class="o">*</span>
+<span class="o">//</span> <span class="o">*</span> <span class="o">#</span><span class="n">defines</span> <span class="k">for</span> <span class="n">configuring</span> <span class="n">the</span> <span class="n">shortest</span> <span class="n">collisional</span> <span class="n">coupling</span> <span class="n">timescale</span>
+<span class="o">//</span> <span class="o">*</span>
+<span class="o">//</span> <span class="o">*</span> <span class="p">(</span><span class="k">c</span><span class="p">)</span> <span class="n">Dr</span><span class="p">.</span> <span class="n">Stephen</span> <span class="n">J</span><span class="p">.</span> <span class="n">Bradshaw</span>
+<span class="o">//</span> <span class="o">*</span>
+<span class="o">//</span> <span class="o">*</span> <span class="k">Source</span> <span class="n">code</span> <span class="k">generated</span> <span class="k">by</span> <span class="n">pydrad</span> <span class="k">on</span> <span class="mi">2018</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">01</span><span class="n">_15</span><span class="p">.</span><span class="mi">14</span><span class="p">.</span><span class="mi">17</span>
+<span class="o">//</span> <span class="o">*</span>
+<span class="o">//</span> <span class="o">****</span>
+
+<span class="o">//</span> <span class="o">****</span> <span class="n">Physics</span> <span class="o">****</span>
+<span class="o">#</span><span class="n">define</span> <span class="n">MINIMUM_COLLISIONAL_COUPLING_TIME_SCALE</span> <span class="mi">0</span><span class="p">.</span><span class="mi">01</span>
+
+<span class="o">//</span> <span class="o">****</span> <span class="k">End</span> <span class="k">of</span> <span class="n">Physics</span> <span class="o">****</span>
+<span class="o">#</span><span class="n">define</span> <span class="n">MY_NEW_PARAM</span> <span class="mi">100</span>
+</code></pre></div>
+
+<h2 id="configuration-parameters">Configuration Parameters</h2>
+<p>The tables below give an exhaustive list of all of the different HYDRAD configuration options. If the units are listed, the input must have units that can be converted to the listed unit with the <a href="http://docs.astropy.org/en/stable/units/">Astropy units module</a>, e.g. <code>loop_length</code> can be input in Mm.</p>
+<h3 id="general">General</h3>
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="left">Description</th>
+<th align="center">Type</th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">total_time</td>
+<td align="left">Total duration of the simulation</td>
+<td align="center"><code>int</code></td>
+<td align="center">s</td>
+</tr>
+<tr>
+<td align="center">output_interval</td>
+<td align="left">How often results are printed to file</td>
+<td align="center"><code>int</code></td>
+<td align="center">s</td>
+</tr>
+<tr>
+<td align="center">loop_length</td>
+<td align="left">Footpoint-to-footpoint distance of the coronal loop</td>
+<td align="center"><code>float</code></td>
+<td align="center">cm</td>
+</tr>
+<tr>
+<td align="center">loop_inclination</td>
+<td align="left">Angle between loop and surface normal</td>
+<td align="center"><code>float</code></td>
+<td align="center">degree</td>
+</tr>
+<tr>
+<td align="center">footpoint_height</td>
+<td align="left">Length of the chromosphere</td>
+<td align="center"><code>float</code></td>
+<td align="center">cm</td>
+</tr>
+<tr>
+<td align="center">poly_fit_gravity</td>
+<td align="left">Coefficients (in order of increasing exponent) for 6th order polynomial fit to the field-aligned gravitational acceleration</td>
+<td align="center">array-like</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">poly_fit_magnetic_field</td>
+<td align="left">Coefficients (in order of increasing exponent) for 6th order polynomial fit to the magnetic field strength along the loop</td>
+<td align="center">array-like</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">logging_frequency</td>
+<td align="left">Frequency (in number of timesteps) that progress is printed to the screen</td>
+<td align="center"><code>int</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">initial_amr_file</td>
+<td align="left">Adaptive mesh file to initialize loop from; if not given, uses the result from the initial conditions code</td>
+<td align="center"><code>str</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">write_file_physical</td>
+<td align="left">Toggle writing <code>.phy</code> solutions file</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">write_file_ion_populations</td>
+<td align="left">Toggle writing <code>.ine</code> file</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">write_file_hydrogen_level_populations</td>
+<td align="left">Toggle writing <code>.Hstate</code> file</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">write_file_timescales</td>
+<td align="left">Toggle writing <code>.scl</code> file</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">write_file_equation_terms</td>
+<td align="left">Toggle writing <code>.trm</code></td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">heat_flux_limiting_coefficient</td>
+<td align="left">See Eq. A15 of <a href="https://doi.org/10.1088/0004-637X/770/1/12">BC13</a></td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">heat_flux_timestep_limit</td>
+<td align="left">Minimum value the heat flux will limit timestep to</td>
+<td align="center"><code>float</code></td>
+<td align="center">s</td>
+</tr>
+<tr>
+<td align="center">use_kinetic_model</td>
+<td align="left">Toggle using kinetic model for heat flux</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">minimum_collisional_coupling_timescale</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center">s</td>
+</tr>
+<tr>
+<td align="center">force_single_fluid</td>
+<td align="left">If true, force electron and ion quantities to be equal</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">use_openmp</td>
+<td align="left">If true, parallelize over threads with <a href="https://www.openmp.org/">OpenMP</a>. This option is most useful when including a NLTE chromosphere.</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">open_field</td>
+<td align="left">If true, one footpoint is assumed to not connect to the surface</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">force_symmetry</td>
+<td align="left"></td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="initial-conditions">Initial Conditions</h3>
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="left">Description</th>
+<th align="center">Type</th>
+<th align="left">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">footpoint_temperature</td>
+<td align="left">Temperature at the loop footpoint</td>
+<td align="center"><code>float</code></td>
+<td align="left">K</td>
+</tr>
+<tr>
+<td align="center">footpoint_density</td>
+<td align="left">Density at the loop footpoint</td>
+<td align="center"><code>float</code></td>
+<td align="left">cm<span><span class="MathJax_Preview">^{-3}</span><script type="math/tex">^{-3}</script></span></td>
+</tr>
+<tr>
+<td align="center">heating_location</td>
+<td align="left">Loop coordinate where equilibrium heat is injected</td>
+<td align="center"><code>float</code></td>
+<td align="left">cm</td>
+</tr>
+<tr>
+<td align="center">heating_scale_height</td>
+<td align="left">Spatial scale of the injected equilibrium heating</td>
+<td align="center"><code>float</code></td>
+<td align="left">cm</td>
+</tr>
+<tr>
+<td align="center">isothermal</td>
+<td align="left">If true, inital temperature profile is uniform</td>
+<td align="center"><code>bool</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">heating_range_lower_bound</td>
+<td align="left">Lower bound on rate search range</td>
+<td align="center"><code>float</code></td>
+<td align="left"><span><span class="MathJax_Preview">\mathrm{erg}\,\mathrm{cm}^{-3}\,\mathrm{s}^{-1}</span><script type="math/tex">\mathrm{erg}\,\mathrm{cm}^{-3}\,\mathrm{s}^{-1}</script></span></td>
+</tr>
+<tr>
+<td align="center">heating_range_upper_bound</td>
+<td align="left">Upper bound on rate search range</td>
+<td align="center"><code>float</code></td>
+<td align="left"><span><span class="MathJax_Preview">\mathrm{erg}\,\mathrm{cm}^{-3}\,\mathrm{s}^{-1}</span><script type="math/tex">\mathrm{erg}\,\mathrm{cm}^{-3}\,\mathrm{s}^{-1}</script></span></td>
+</tr>
+<tr>
+<td align="center">heating_range_step_size</td>
+<td align="left">Resolution of heating search range</td>
+<td align="center"><code>float</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">heating_range_fine_tuning</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">use_poly_fit_gravity</td>
+<td align="left">If True, use polynomial fit to gravitational profile</td>
+<td align="center"><code>bool</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">use_poly_fit_magnetic_field</td>
+<td align="left">If True, use polynomial fit to magnetic field strength</td>
+<td align="center"><code>bool</code></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="heating">Heating</h3>
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="left">Description</th>
+<th align="center">Type</th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">heat_electrons</td>
+<td align="left">If false, only ions are heated</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">beam</td>
+<td align="left">Toggle beam heating model</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">alfven_wave</td>
+<td align="left">Toggle Alfvén wave heating model</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">background</td>
+<td align="left">Parameters for configuring background heating profile</td>
+<td align="center"><code>dict</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">events</td>
+<td align="left">List of heating event properties</td>
+<td align="center"><code>list</code></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>background</code> dict can have the following keys. If it is not included at all, no background heating is applied.</p>
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="center">Description</th>
+<th align="center">Type</th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">use_initial_conditions</td>
+<td align="center">If true, use the heating parameters from the initial conditions and the computed equilibrium heating rate. If present, all other keys are ignored.</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">location</td>
+<td align="center">Location of the energy deposition</td>
+<td align="center"><code>float</code></td>
+<td align="center">cm</td>
+</tr>
+<tr>
+<td align="center">scale_height</td>
+<td align="center">Spatial scale of the energy deposition</td>
+<td align="center"><code>float</code></td>
+<td align="center">cm</td>
+</tr>
+<tr>
+<td align="center">rate</td>
+<td align="center">Maximum heating rate</td>
+<td align="center"><code>float</code></td>
+<td align="center"><span><span class="MathJax_Preview">\mathrm{erg}\,\mathrm{cm}^{-3}\,\mathrm{s}^{-1}</span><script type="math/tex">\mathrm{erg}\,\mathrm{cm}^{-3}\,\mathrm{s}^{-1}</script></span></td>
+</tr>
+</tbody>
+</table>
+<p>Each entry in the <code>events</code> list should be a dictionary with the following seven keys (and appropriate units) corresponding to each heating event,</p>
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">time_start</td>
+<td align="center">s</td>
+</tr>
+<tr>
+<td align="center">rise_duration</td>
+<td align="center">s</td>
+</tr>
+<tr>
+<td align="center">decay_duration</td>
+<td align="center">s</td>
+</tr>
+<tr>
+<td align="center">total_duration</td>
+<td align="center">s</td>
+</tr>
+<tr>
+<td align="center">location</td>
+<td align="center">cm</td>
+</tr>
+<tr>
+<td align="center">scale_height</td>
+<td align="center">cm</td>
+</tr>
+<tr>
+<td align="center">rate</td>
+<td align="center"><span><span class="MathJax_Preview">\mathrm{erg}\,\mathrm{cm}^{-3}\,\mathrm{s}^{-1}</span><script type="math/tex">\mathrm{erg}\,\mathrm{cm}^{-3}\,\mathrm{s}^{-1}</script></span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="radiation">Radiation</h3>
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="left">Description</th>
+<th align="center">Type</th>
+<th align="left">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">use_power_law_radiative_losses</td>
+<td align="left">If true, use piecewise power-law to calculate radiative losses</td>
+<td align="center"><code>bool</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">lookup_table</td>
+<td align="left">Path (relative to the root of the HYDRAD directory) to lookup table for radiative losses. Ignored unless use_power_law_radiative_losses is also set.</td>
+<td align="center"><code>str</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">decouple_ionization_state_solver</td>
+<td align="left">If true, the non-equilibrium population fractions are not fed back into the radiative loss calculation. This option will be ignored unless a list of elements is also passed to elements_nonequilibrium. If use_power_law_radiative_losses is false, the equilibrium population fractions will be used to calculate the radiative losses.</td>
+<td align="center"><code>bool</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">density_dependent_rates</td>
+<td align="left"></td>
+<td align="center"><code>bool</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">optically_thick_radiation</td>
+<td align="left">If true, include optically thick lines in radiative losses</td>
+<td align="center"><code>bool</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">nlte_chromosphere</td>
+<td align="left">Treat the chromosphere as being in non-local thermal equilibrium. <strong>NOTE: This may significantly increase the computation time.</strong></td>
+<td align="center"><code>bool</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">minimum_density_limit</td>
+<td align="left">Density floor of the corona. This option is required if nlte_chromosphere is true</td>
+<td align="center"><code>float</code></td>
+<td align="left">cm<span><span class="MathJax_Preview">^{-3}</span><script type="math/tex">^{-3}</script></span></td>
+</tr>
+<tr>
+<td align="center">ranges_dataset</td>
+<td align="left">Temperature and density ranges dataset</td>
+<td align="center"><code>str</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">emissivity_dataset</td>
+<td align="left">Name of emissivity dataset</td>
+<td align="center"><code>str</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">abundance_dataset</td>
+<td align="left">Name of abundance dataset</td>
+<td align="center"><code>str</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">rates_dataset</td>
+<td align="left">Name of ionization/recombination rates dataset</td>
+<td align="center"><code>str</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">elements_equilibrium</td>
+<td align="left">Assume ionization equilibrium when calculating these population fractions</td>
+<td align="center"><code>list</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">elements_nonequilibrium</td>
+<td align="left">Account for time-dependent ionization when calculating these population fractions</td>
+<td align="center"><code>list</code></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>In the lists of equilibrium and non-equilibrium elements, each entry can either be the atomic symbol, number, or the element name. As an example, each entry in the list below (which includes hydrogen, helium, carbon, and iron) is a valid element identifier,</p>
+<div class="codehilite"><pre><span></span><code><span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;hydrogen&#39;</span><span class="p">,</span> <span class="s1">&#39;He&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">26</span><span class="p">]</span>
+</code></pre></div>
+
+<h3 id="solver">Solver</h3>
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="left">Description</th>
+<th align="center">Type</th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">epsilon</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">safety_radiation</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">safety_conduction</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">safety_advection</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">safety_atomic</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">safety_viscosity</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">cutoff_ion_fraction</td>
+<td align="left">Population fractions below this value are set to 0</td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">epsilon_d</td>
+<td align="left">Safety factor for ion population solver; see <a href="http://doi.org/10.1051/0004-6361/200810735">B09</a></td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">epsilon_r</td>
+<td align="left">Safety factor for ion population solver; see <a href="http://doi.org/10.1051/0004-6361/200810735">B09</a></td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">timestep_increase_limit</td>
+<td align="left">Allowed fractional difference (between 0 and 1) from 1 timestep to next</td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">relative_viscous_timescale</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">minimum_radiation_temperature</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center">K</td>
+</tr>
+<tr>
+<td align="center">zero_over_temperature_interval</td>
+<td align="left">Temperature interval over which the chromospheric radiative losses are set to zero</td>
+<td align="center"><code>float</code></td>
+<td align="center">K</td>
+</tr>
+<tr>
+<td align="center">minimum_temperature</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center">K</td>
+</tr>
+<tr>
+<td align="center">maximum_optically_thin_density</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center"><span><span class="MathJax_Preview">\mathrm{cm}^{-3}</span><script type="math/tex">\mathrm{cm}^{-3}</script></span></td>
+</tr>
+<tr>
+<td align="center">cutoff_temperature_fraction</td>
+<td align="left">Ratio between cutoff temperature and peak temperature. If set, use the method of <a href="https://doi.org/10.3847/2041-8213/ab0c1f">JB19</a> to model the transition region.</td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="grid">Grid</h3>
+<table>
+<thead>
+<tr>
+<th align="center">Name</th>
+<th align="left">Description</th>
+<th align="center">Type</th>
+<th align="center">Units</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">adapt</td>
+<td align="left">Toggle using adaptive mesh refinement</td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">adapt_every_n_time_steps</td>
+<td align="left">How often to adapt on time step</td>
+<td align="center"><code>int</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">maximum_cell_width</td>
+<td align="left">The maximum allowed width of any grid cell</td>
+<td align="center"><code>float</code></td>
+<td align="center">cm</td>
+</tr>
+<tr>
+<td align="center">maximum_refinement_level</td>
+<td align="left">The maximum number of times a grid cell can be split; see <a href="https://doi.org/10.1088/0004-637X/770/1/12">BC13</a></td>
+<td align="center"><code>int</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">minimum_delta_s</td>
+<td align="left">Smallest allowed grid cell width in the initial setup</td>
+<td align="center"><code>float</code></td>
+<td align="center">cm</td>
+</tr>
+<tr>
+<td align="center">maximum_variation</td>
+<td align="left"></td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">refine_on_density</td>
+<td align="left"></td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">refine_on_electron_energy</td>
+<td align="left"></td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">refine_on_hydrogen_energy</td>
+<td align="left"></td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">minimum_fractional_difference</td>
+<td align="left">Minimum allowed difference (between 0 and 1) between adjacent cells</td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">maximum_fractional_difference</td>
+<td align="left">Maximum allowed difference (between 0 and 1) between adjacent cells</td>
+<td align="center"><code>float</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">linear_restriction</td>
+<td align="left"></td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">enforce_conservation</td>
+<td align="left"></td>
+<td align="center"><code>bool</code></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href=".." class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Getting Started
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../parse/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Parsing the Results
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="http://solar.rice.edu/" target="_blank" rel="noopener" title="solar.rice.edu" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/rice-solar-physics" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.fd16492e.min.js"></script>
+      <script src="../assets/javascripts/bundle.7836ba4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
